@@ -10,6 +10,8 @@
             .container {
                 width: 800px;
                 margin: auto;
+                background-color:magenta;
+                padding: 1em;
             }
 
             ul {
@@ -17,6 +19,35 @@
                 padding:0;
                 list-style: none;
             }
+
+            input, button {
+                padding: 1em;
+                font-size: 1em;
+                border: 1px solid;
+                border-radius: 0.25em;
+            }
+
+            button {
+                background-color:black;
+                color:honeydew;
+                min-width: 2.5em;
+            }
+
+            #item-list > li {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            #cart-total {
+                font-size: 2em;
+                border-top: 1px solid; 
+            }
+
+            #cart-qty {
+                padding: 1em;
+            } 
         </style>
     </head>
 
@@ -24,7 +55,7 @@
         <div class="container">
             <form id="add-form">
                 <label>Name: <input id="item-name" type="text" placeholder="Item Name"></label>
-                <label>Price: <input id="item-price" type="number" step="0.01"></label>
+                <label>Price: <input id="item-price" type="number" step="0.01" placeholder="Item Price"></label>
                 <button type="submit">Add Item</button>
             </form>
 
@@ -112,7 +143,7 @@
             function showItems() {
                 const qty = getQty()
 
-                cartQty.innerHTML = `You have ${qty} items in your cart`
+                cartQty.innerHTML = `You have ${qty} items in your cart` 
 
                 let itemStr = ''
                for (let i=0; i < cart.length; i+= 1) {
@@ -122,11 +153,15 @@
                     const { name, price, qty } = cart[i]
 
                    itemStr += `<li>
+                   <span>
                    ${name} $${price.toFixed(2)} x ${qty} = ${(qty * price).toFixed(2)}
+                    </span>
+                    <span>
                    <button class="remove" data-name="${name}">Remove</button>
                    <button class="add-one" data-name="${name}"> + </button>
                    <button class="remove-one" data-name="${name}"> - </button>
                     <input class="update" type="number" data-name="${name}">
+                    </span>
                    </li>`
                 }
                 itemList.innerHTML = itemStr
