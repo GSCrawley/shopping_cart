@@ -37,6 +37,20 @@
 
             const cart = [ ]
 
+            //----------------------------------
+            //handle clicks on list
+            itemList.onclick = function(e) {
+                // console.log("Clicked List!!!")
+                // console.log(e.target)
+                if (e.target && e.target.classList.contains('remove')) {
+                    const name = e.target.dataset.name // data-name="????"
+                    removeItem(name)
+                }
+
+            }
+
+
+
             // ------------------------------
             // handle ad form submit
             addForm.onsubmit =  function(e) {
@@ -78,7 +92,10 @@
                     // { name: 'Apple', price: 0.99, qty: 3 }
                     const { name, price, qty } = cart[i]
 
-                   itemStr += `<li>${name} $${price} x ${qty} = ${qty * price}</li>`
+                   itemStr += `<li>
+                   ${name} $${price} x ${qty} = ${qty * price}
+                   <button class="remove" data-name="${name}">Remove</button>
+                   </li>`
                 }
                 itemList.innerHTML = itemStr
 
@@ -119,6 +136,7 @@
                         if(cart[i].qty < 1 || qty === 0) {
                             cart.splice(i, 1)
                         }
+                        showItems()
                         return
                     }
                 }
@@ -133,14 +151,14 @@
             addItem('Apple', 0.99)
             addItem('Orange', 0.99)
 
-            showItems()
+            // showItems()
 
 
-            removeItem('Apple', 1)
-            removeItem('Frisbee')
+            // removeItem('Apple', 1)
+            // removeItem('Frisbee')
 
 
-            showItems()
+            // showItems()
         </script>
     </body>
 </htnl>
