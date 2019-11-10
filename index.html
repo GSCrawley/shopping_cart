@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<htnl>
+<html>
     <head>
         <title></title>
         <style>
@@ -45,6 +45,12 @@
                 if (e.target && e.target.classList.contains('remove')) {
                     const name = e.target.dataset.name // data-name="????"
                     removeItem(name)
+                } else if (e.target && e.target.classList.contains('add-one')) {
+                    const name = e.target.dataset.name
+                    addItem(name)
+                } else if (e.target && e.target.classList.contains('remove-one')) {
+                    const name = e.target.dataset.name
+                    removeItem(name, 1)
                 }
 
             }
@@ -95,6 +101,9 @@
                    itemStr += `<li>
                    ${name} $${price} x ${qty} = ${qty * price}
                    <button class="remove" data-name="${name}">Remove</button>
+                   <button class="add-one" data-name="${name}"> + </button>
+                   <button class="remove-one" data-name="${name}"> - </button>
+
                    </li>`
                 }
                 itemList.innerHTML = itemStr
@@ -142,14 +151,19 @@
                 }
             }
 
+            //Add single item
             //--------------------------------------------------
-            addItem('Apple', 0.99)
-            addItem('Orange', 1.29)
-            addItem('Opinion', 0.02)
-            addItem('Apple', 0.99)
-            addItem('Frisbee', 9.92)
-            addItem('Apple', 0.99)
-            addItem('Orange', 0.99)
+            function addQty()
+
+
+            //--------------------------------------------------
+            // addItem('Apple', 0.99)
+            // addItem('Orange', 1.29)
+            // addItem('Opinion', 0.02)
+            // addItem('Apple', 0.99)
+            // addItem('Frisbee', 9.92)
+            // addItem('Apple', 0.99)
+            // addItem('Orange', 0.99)
 
             // showItems()
 
@@ -161,4 +175,4 @@
             // showItems()
         </script>
     </body>
-</htnl>
+</html>
