@@ -12,6 +12,16 @@
         <script>
             const cart = [ ]
 
+            const a = 999
+            const greeting = "hello"
+            const c = 888
+            const place = 'world'
+
+            const obj = { a, greeting, c, place }
+
+            console.log(obj)
+            console.log('****************************')
+
             function addItem(name, price) {
                 for (let i =0; i < cart.length; i += 1) {
                     if (cart[i].name === name) {
@@ -25,27 +35,36 @@
             }
 
             function showItems() {
-                
-                let qty = 0
-                for (let i = 0; i< cart.length; i += 1) {
-                    qty += cart[i].qty
-                }
+                const qty = getQty()
 
-               console.log(`You have ${qty} items in your cart`)
+               console.log(`You have ${getQty()} items in your cart`)
 
                for (let i=0; i < cart.length; i+= 1) {
                    console.log(` ${cart[i].name} ${cart[i].price} x ${cart[i].qty} `)
  
                 }
-                let total = 0
-                for (let i = 0; i < cart.length; i +=1) {
-                    total += cart[i].price * cart[i].qty
+                console.log(`Total in cart: $${getTotal()}`)
+            }
+
+            function getQty() {
+                let qty = 0
+                for (let i = 0; i< cart.length; i += 1) {
+                    qty += cart[i].qty
                 }
-
-                console.log(`Total in cart: $${total}`)
-
+                return qty
 
             }
+
+            function getTotal() {
+                let total = 0
+                for (let i = 0; i < cart.length; i += 1) {
+                    total += cart[i].price * cart[i].qty
+                }
+               
+                return total.toFixed(2)
+            }
+
+
 
             addItem('Apple', 0.99)
             addItem('Orange', 1.29)
