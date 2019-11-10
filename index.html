@@ -37,6 +37,16 @@
 
             const cart = [ ]
 
+            // ----------------------------------------------
+            // Handle Change events on update input
+            itemList.onchange = function(e) {
+                if (e.target && e.target.classList.contains('update')) {
+                    const name = e.target.dataset.name
+                    const qty = parseInt(e.target.value)
+                    updateCart(name, qty)
+                }
+            }
+
             //----------------------------------
             //handle clicks on list
             itemList.onclick = function(e) {
@@ -103,7 +113,7 @@
                    <button class="remove" data-name="${name}">Remove</button>
                    <button class="add-one" data-name="${name}"> + </button>
                    <button class="remove-one" data-name="${name}"> - </button>
-
+                    <input class="update" type="number" data-name="${name}">
                    </li>`
                 }
                 itemList.innerHTML = itemStr
@@ -151,21 +161,37 @@
                 }
             }
 
+            // -------------------------------
+            function updateCart(name, qty) {
+                for (let i = 0; i < cart.length; i += 1) {
+                    if (cart[i].name === name) {
+                        if (qty < 1) {
+                            removeItem(name)
+                            return
+                        }
+                        cart[i].qty = qty
+                        showItems()
+                        return
+                    }
+                }
+            }
+
+
             //Add single item
             //--------------------------------------------------
-            function addQty()
+            
 
 
             //--------------------------------------------------
-            // addItem('Apple', 0.99)
-            // addItem('Orange', 1.29)
-            // addItem('Opinion', 0.02)
-            // addItem('Apple', 0.99)
-            // addItem('Frisbee', 9.92)
-            // addItem('Apple', 0.99)
-            // addItem('Orange', 0.99)
+            addItem('Apple', 0.99)
+            addItem('Orange', 1.29)
+            addItem('Opinion', 0.02)
+            addItem('Apple', 0.99)
+            addItem('Frisbee', 9.92)
+            addItem('Apple', 0.99)
+            addItem('Orange', 0.99)
 
-            // showItems()
+            showItems()
 
 
             // removeItem('Apple', 1)
