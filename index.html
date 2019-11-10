@@ -9,9 +9,18 @@
 
     <body>
 
+        <!-- Quantity-->
 
+        <ul id="item-list">
+            <!--Cart Items-->
+        </ul>
+
+        <!-- Total -->
 
         <script>
+            const itemList = document.getElementById('item-list')
+
+
             const cart = [ ]
 
             // Add Item
@@ -35,10 +44,13 @@
 
                console.log(`You have ${getQty()} items in your cart`)
 
+                let itemStr = ''
                for (let i=0; i < cart.length; i+= 1) {
-                   console.log(` ${cart[i].name} ${cart[i].price} x ${cart[i].qty} `)
- 
+                //    console.log(` ${cart[i].name} ${cart[i].price} x ${cart[i].qty} `)
+                   itemStr += `<li> ${cart[i].name} ${cart[i].price} x ${cart[i].qty}</li> `
                 }
+                itemList.innerHTML = itemStr
+
                 console.log(`Total in cart: $${getTotal()}`)
             }
 
